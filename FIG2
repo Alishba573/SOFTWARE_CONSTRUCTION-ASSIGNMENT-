@@ -1,0 +1,69 @@
+// Engine.java
+public interface Engine {
+    void move();
+}
+
+// Driver.java
+public interface Driver {
+    void navigate(String destination);
+}
+
+// CombustionEngine.java
+public class CombustionEngine implements Engine {
+    @Override
+    public void move() {
+        System.out.println("Combustion engine moving using fuel.");
+    }
+}
+
+// ElectricEngine.java
+public class ElectricEngine implements Engine {
+    @Override
+    public void move() {
+        System.out.println("Electric engine moving silently.");
+    }
+}
+
+// Human.java
+public class Human implements Driver {
+    @Override
+    public void navigate(String destination) {
+        System.out.println("Human navigating to: " + destination);
+    }
+}
+
+// Robot.java
+public class Robot implements Driver {
+    @Override
+    public void navigate(String destination) {
+        System.out.println("Robot automatically navigating to: " + destination);
+    }
+}
+
+// Transport.java
+public class Transport {
+    private Engine engine;
+    private Driver driver;
+
+    public Transport(Engine engine, Driver driver) {
+        this.engine = engine;
+        this.driver = driver;
+    }
+
+    public void deliver(String destination, String cargo) {
+        driver.navigate(destination);
+        engine.move();
+        System.out.println("Delivering cargo: " + cargo);
+    }
+}
+
+// MainFig2.java
+public class MainFig2 {
+    public static void main(String[] args) {
+        Engine electric = new ElectricEngine();
+        Driver robot = new Robot();
+
+        Transport transport = new Transport(electric, robot);
+        transport.deliver("Warehouse A", "Electronics");
+    }
+}
