@@ -1,0 +1,53 @@
+// Employee.java
+public interface Employee {
+    void doWork();
+}
+
+// GameDevCompany.java
+public class GameDevCompany implements Employee {
+    @Override
+    public void doWork() {
+        System.out.println("Game Developer creating awesome games!");
+    }
+}
+
+// OutsourcingCompany.java
+public class OutsourcingCompany implements Employee {
+    @Override
+    public void doWork() {
+        System.out.println("Outsourcing Company providing contract services.");
+    }
+}
+
+// Designer.java
+public class Designer implements Employee {
+    @Override
+    public void doWork() {
+        System.out.println("Designer creating UI/UX designs.");
+    }
+}
+
+// Company.java
+public class Company {
+    private Employee employee;
+
+    public Company(Employee employee) {
+        this.employee = employee;
+    }
+
+    public void manageEmployee() {
+        System.out.println("Company managing employee task:");
+        employee.doWork();
+    }
+}
+
+// MainFig3.java
+public class MainFig3 {
+    public static void main(String[] args) {
+        Company company1 = new Company(new GameDevCompany());
+        company1.manageEmployee();
+
+        Company company2 = new Company(new Designer());
+        company2.manageEmployee();
+    }
+}
