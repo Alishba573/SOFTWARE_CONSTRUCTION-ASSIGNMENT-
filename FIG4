@@ -1,0 +1,59 @@
+// Shipping.java
+public interface Shipping {
+    double getCost();
+    int getDeliveryDays();
+}
+
+// Ground.java
+public class Ground implements Shipping {
+    @Override
+    public double getCost() {
+        return 20.0;
+    }
+
+    @Override
+    public int getDeliveryDays() {
+        return 5;
+    }
+}
+
+// Air.java
+public class Air implements Shipping {
+    @Override
+    public double getCost() {
+        return 50.0;
+    }
+
+    @Override
+    public int getDeliveryDays() {
+        return 2;
+    }
+}
+
+// Order.java
+public class Order {
+    private String itemName;
+    private Shipping shipping;
+
+    public Order(String itemName, Shipping shipping) {
+        this.itemName = itemName;
+        this.shipping = shipping;
+    }
+
+    public void shipOrder() {
+        System.out.println("Order for: " + itemName);
+        System.out.println("Shipping cost: $" + shipping.getCost());
+        System.out.println("Delivery in: " + shipping.getDeliveryDays() + " days");
+    }
+}
+
+// MainFig4.java
+public class MainFig4 {
+    public static void main(String[] args) {
+        Order order1 = new Order("Laptop", new Ground());
+        order1.shipOrder();
+
+        Order order2 = new Order("Smartphone", new Air());
+        order2.shipOrder();
+    }
+}
