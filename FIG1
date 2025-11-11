@@ -1,0 +1,72 @@
+// CloudHostingProvider.java
+public interface CloudHostingProvider {
+    void createServer(String region);
+    void listServers(String region);
+}
+
+// CDNProvider.java
+public interface CDNProvider {
+    void getCDNAddress();
+}
+
+// CloudStorageProvider.java
+public interface CloudStorageProvider {
+    void store(String fileName);
+    String get(String fileName);
+}
+
+// Amazon.java
+public class Amazon implements CloudHostingProvider, CDNProvider, CloudStorageProvider {
+    @Override
+    public void createServer(String region) {
+        System.out.println("Amazon server created in region: " + region);
+    }
+
+    @Override
+    public void listServers(String region) {
+        System.out.println("Listing Amazon servers in region: " + region);
+    }
+
+    @Override
+    public void getCDNAddress() {
+        System.out.println("Amazon CDN address retrieved.");
+    }
+
+    @Override
+    public void store(String fileName) {
+        System.out.println("Amazon stored file: " + fileName);
+    }
+
+    @Override
+    public String get(String fileName) {
+        return "Amazon retrieved file: " + fileName;
+    }
+}
+
+// Dropbox.java
+public class Dropbox implements CloudStorageProvider {
+    @Override
+    public void store(String fileName) {
+        System.out.println("Dropbox stored file: " + fileName);
+    }
+
+    @Override
+    public String get(String fileName) {
+        return "Dropbox retrieved file: " + fileName;
+    }
+}
+
+// MainFig1.java
+public class MainFig1 {
+    public static void main(String[] args) {
+        Amazon amazon = new Amazon();
+        amazon.createServer("US-East");
+        amazon.getCDNAddress();
+        amazon.store("data.txt");
+        System.out.println(amazon.get("data.txt"));
+
+        Dropbox dropbox = new Dropbox();
+        dropbox.store("photo.png");
+        System.out.println(dropbox.get("photo.png"));
+    }
+}
